@@ -1,0 +1,71 @@
+#' list of QTL attributes and filters.
+#' 
+#' @return result
+#' @export
+#' @examples 
+#' listQTLAF()
+listQTLAF<-function(){
+i <- c('Chromosome',
+'Association',
+'Chstart',
+'Chend',
+'QTL_ID',
+'QTL_Name',
+'Abbrev',
+'Pubmed_ID',
+'Trait_ID',
+'Trait',
+'Flankmarkers',
+'CMO_Name',
+'VTO_Name',
+'PTO_Name',
+'Map_Type',
+'Model',
+'Test_Base',
+'Breed',
+'Peak_CM',
+'Significance',
+'LOD_Score',
+'P_Value',
+'F_Stat',
+'Variance',
+'Likelihood_Ratio',
+'Bayes_Value',
+'Dominance_Effect',
+'Additive_Effect',
+'gene_ID',
+'gene_IDsrc');
+j <- c('Chromosome name',
+'Association',
+'Gene Start (bp)',
+'Gene End (bp)',
+'QTL ID',
+'QTL Name',
+'Abbreviation',
+'PUBMED ID',
+'Trait ID',
+'Trait',
+'FlankMarkers',
+'CMO Name',
+'VTO Name',
+'PTO Name',
+'Map Type',
+'Model',
+'Test Base',
+'Breed',
+'peak cM',
+'Significance',
+'LOD Score',
+'P value',
+'F Stat',
+'Variance',
+'Likelihood Ratio',
+'Bayes Value',
+'Dominance Effect',
+'Additive Effect',
+'gene ID',
+'gene IDsrc');
+result<-data.frame(i, j);
+colnames(result)<-c('name', 'description');
+return(result);
+}
