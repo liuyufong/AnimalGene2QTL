@@ -23,7 +23,7 @@
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt getBM
+#' @importFrom biomaRt getBM
 #' @import knitr
 #' @import AnimalQTLDB
 #' @examples
@@ -31,13 +31,10 @@
 #' gene_values <- c('ENSBTAG00000009851');
 #' getAnimalQTL(qtl_attributes=c('QTL_ID'),gene_filters,
 #' gene_values,data_set=1,snp=TRUE,"refsnp_id");
-getAnimalQTL <- function(qtl_attributes, 
-    gene_filters,
-    gene_values, 
-    data_set, snp="", 
-    snp_attributes=""){
+getAnimalQTL <- function(qtl_attributes, gene_filters,gene_values, 
+data_set, snp="", snp_attributes=""){
 if(missing(qtl_attributes)){
-    stop("Argument 'qtl_attributes' must be specified.")
+stop("Argument 'qtl_attributes' must be specified.")
 }
 if(missing(gene_filters))
 stop("Argument 'gene_filters' must be specified.")
@@ -178,15 +175,10 @@ if(chromrow>=1){
 if(snp == TRUE){
 snp_mart <- useMart("ENSEMBL_MART_SNP", 
 dataset = snpdataset);
-single_SNP <- getBM(attributes=c(snp_attributes,
-'chr_name',
-'chrom_start',
-'chrom_end'),
-filters=c('chr_name','start','end'),
-values=list(chromchr[,gflength+1],
-chromchr[,gflength+2],
-chromchr[,gflength+3]),
-mart = snp_mart);
+single_SNP <- getBM(attributes=c(snp_attributes,'chr_name','chrom_start',
+'chrom_end'),filters=c('chr_name','start','end'),
+values=list(chromchr[,gflength+1],chromchr[,gflength+2],
+chromchr[,gflength+3]),mart = snp_mart);
 snprow <- nrow(single_SNP);
 }
 for(i in 1:chromrow){

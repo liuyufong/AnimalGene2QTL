@@ -19,7 +19,7 @@
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt getBM
+#' @importFrom biomaRt getBM
 #' @import knitr
 #' @import AnimalQTLDB
 #' @examples
@@ -27,8 +27,7 @@
 #' snp_values <- c('rs3136845');
 #' getQTLbySNP(qtl_attributes=c('QTL_ID'),snp_filters,
 #' snp_values,data_set=2);
-getQTLbySNP <- function(qtl_attributes, snp_filters, 
-snp_values, data_set){
+getQTLbySNP <- function(qtl_attributes, snp_filters, snp_values, data_set){
 if(missing(qtl_attributes)){
 stop("Argument 'qtl_attributes' must be specified.")
 }

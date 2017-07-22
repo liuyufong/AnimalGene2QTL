@@ -22,12 +22,12 @@
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt getBM
+#' @importFrom biomaRt getBM
 #' @import knitr
 #' @import AnimalQTLDB
 #' @examples 
 #' snp_attributes <- c('refsnp_id');
-#' qtl_filters  <- c('QTL_ID');
+#' qtl_filters <- c('QTL_ID');
 #' qtl_values <- c('64577', '2199', '2354');
 #' getSNPbyQTL(snp_attributes, 
 #' qtl_filters, qtl_values, data_set = 2);
@@ -92,7 +92,7 @@ qtldatatable <- switch (data_set,
 a1 <- paste('select',toString(qtl_filters),
 ",Chromosome,Chstart,Chend from ");
 a2 <- "where";
-result  <- data.frame();
+result <- data.frame();
 ensembl <- useMart("ENSEMBL_MART_SNP", dataset = snpdataset);
 for(i in 1:qtlflength){
 if(i == 1){
@@ -120,7 +120,7 @@ query <- gsub(pattern = "' ", replacement = "'", query);
 query <- gsub(pattern = " '", replacement = "'", query);
 qtlquery <- dbGetQuery(con, query);
 qtlrow <- NROW(qtlquery);
-geneNA  <- character();
+geneNA <- character();
 if(qtlrow>=1){
 snp_all <- getBM(attributes=c(snp_attributes,'chr_name',
 'chrom_start','chrom_end'), filters=c('chr_name', 'start', 'end'),

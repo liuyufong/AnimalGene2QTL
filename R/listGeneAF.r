@@ -6,7 +6,7 @@
 #' @return result
 #' @export
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt listFilters
+#' @importFrom biomaRt listFilters
 #' @export
 #' @examples 
 #' listGeneAF(1)

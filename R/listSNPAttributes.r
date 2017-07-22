@@ -6,7 +6,7 @@
 #' @return result
 #' @export
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt listAttributes
+#' @importFrom biomaRt listAttributes
 #' @export
 #' @examples 
 #' listSNPAttributes(1)

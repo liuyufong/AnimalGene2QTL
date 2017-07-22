@@ -22,19 +22,16 @@
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
 #' @importFrom biomaRt useMart
-#' @importFrom  biomaRt getBM
+#' @importFrom biomaRt getBM
 #' @import knitr
 #' @import AnimalQTLDB
 #' @examples 
 #' gene_attributes <- c('ensembl_gene_id');
-#' qtl_filters  <- c('QTL_ID');
+#' qtl_filters <- c('QTL_ID');
 #' qtl_values <- c('64577', '2199', '2354');
 #' getAnimalGene(gene_attributes, 
 #' qtl_filters, qtl_values, data_set = 2);
-getAnimalGene <- function(gene_attributes, 
-    qtl_filters, 
-    qtl_values, 
-    data_set){
+getAnimalGene <- function(gene_attributes, qtl_filters, qtl_values, data_set){
 if(missing(gene_attributes))
 stop("Argument 'gene_attributes' must be specified.")
 if(is.list(qtl_filters) && !missing(qtl_values)) 
@@ -48,11 +45,9 @@ if(length(qtl_filters) > 0 && length(qtl_values) == 0)
 stop("qtl_values argument contains no data.")
 if(data_set < 1 || data_set > 5) {
 stop("Argument 'data_set' must be a selected in '1','2','3','4','5'.
-    '1'='btaurus_gene_ensembl',
-    '2'='ggalluse_gene_ensembl',
-    '3'='ecaballus_gene_ensembl',
-    '4'='sscrofa_gene_ensembl',
-    '5'='oaries_gene_ensembl' ")
+'1'='btaurus_gene_ensembl','2'='ggalluse_gene_ensembl',
+'3'='ecaballus_gene_ensembl','4'='sscrofa_gene_ensembl',
+'5'='oaries_gene_ensembl' ")
 }
 if(is.list(gene_attributes)){
 gene_attributes <- t(gene_attributes);
@@ -124,7 +119,7 @@ query <- paste(a1, datatable, a2);
 query <- gsub(pattern = "' ", replacement = "'", query);
 query <- gsub(pattern = " '", replacement = "'", query);
 singleRowQuery <- dbGetQuery(con, query);
-geneNA  <- character();
+geneNA <- character();
 if(nrow(singleRowQuery) >= 1){
 singleRowgene <- getBM(attributes=gene_attributes, 
 filters=c('chromosome_name',
@@ -140,13 +135,13 @@ geneNA[1:attlength] <- "NA";
 geneNA <- as(geneNA, "list");
 if(is.list(qtl_values)){
 qtlgene <- data.frame(geneNA, qtl_values[i,]);
-colnames(qtlgene)[1:(attlength+flength)]  <- c(
+colnames(qtlgene)[1:(attlength+flength)] <- c(
 gene_attributes, 
  qtl_filters);
 result <- rbind(result, qtlgene);
 }else if(!is.list(qtl_values)){
 qtlgene <- data.frame(geneNA, qtl_values[i] );
-colnames(qtlgene)[1:(attlength+flength)]  <- c(
+colnames(qtlgene)[1:(attlength+flength)] <- c(
 gene_attributes, 
 qtl_filters);
 result <- rbind(result, qtlgene);
@@ -165,7 +160,7 @@ result <- rbind(result, qtlgene);
 }else if(!is.list(qtl_values)){
 qtlgene <- data.frame(singleRowgene[j,1:attlength], 
 qtl_values[i]);
-colnames(qtlgene)[1:(attlength+flength)]  <- c(gene_attributes, 
+colnames(qtlgene)[1:(attlength+flength)] <- c(gene_attributes, 
 qtl_filters);
 result <- rbind(result, qtlgene);
 }
@@ -177,12 +172,12 @@ geneNA[1:attlength] <- "NO this 'value' in QTL database";
 geneNA <- as(geneNA, "list");
 if(is.list(qtl_values)){
 qtlgene <- data.frame(geneNA, qtl_values[i,]);
-colnames(qtlgene)[1:(attlength+flength)]  <- c(gene_attributes, 
+colnames(qtlgene)[1:(attlength+flength)] <- c(gene_attributes, 
 qtl_filters);
 result <- rbind(result, qtlgene);
 }else if(!is.list(qtl_values)){
 qtlgene <- data.frame(geneNA, qtl_values[i]);
-colnames(qtlgene)[1:(attlength+flength)]  <- c(gene_attributes, 
+colnames(qtlgene)[1:(attlength+flength)] <- c(gene_attributes, 
 qtl_filters);
 result <- rbind(result, qtlgene);
 }
@@ -191,5 +186,5 @@ geneNA <- NULL;
 }
 dbDisconnect(con);
 result <- unique(result);
-return (result);
+ return (result);
 }
