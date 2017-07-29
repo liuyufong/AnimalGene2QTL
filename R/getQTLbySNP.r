@@ -18,6 +18,8 @@
 #' @importFrom RSQLite dbGetQuery
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
+#' @importFrom biomaRt listMarts
+#' @importFrom biomaRt useEnsembl
 #' @importFrom biomaRt useMart
 #' @importFrom biomaRt getBM
 #' @import knitr
@@ -94,21 +96,31 @@ att <- paste(att, qtl_attributes[n]);
 }
 }
 result <- list();
-ensembl <- useMart("ENSEMBL_MART_SNP", dataset = snpdataset);
+if(data_set == 2){
+ensembl<-useEnsembl("ensembl",version = 85);
+message("The version of chicken QTL is 4.0,and the
+version of gene is 4.0!");
+host<-"grch37.ensembl.org";
+}else{
+ensembl<-useEnsembl("ensembl");
+host<-"www.ensembl.org";
+}
+martlist<-listMarts(ensembl);
+mart <- useMart(martlist[2,1], dataset = snpdataset, host=host);
 for(r in 1:srow){
 if(is.list(snp_values)){
 chromchr <- getBM(attributes=c('chr_name','chrom_start',
 'chrom_end'),filters=snp_filters,values=snp_values[r,],
-mart=ensembl);
+mart=mart);
 }
 if(!is.list(snp_values)){
 chromchr <- getBM(attributes=c('chr_name','chrom_start',
-'chrom_end'), filters=snp_filters, values=snp_values[r], 
-mart=ensembl);
+'chrom_end'), filters=snp_filters, values=snp_values[r],
+mart=mart);
 }
 chromrow <- NROW(chromchr);
 for(i in 1:chromrow){
-query <- paste(a1, att, a2, qtldatabase, a3, chromchr[i,1], 
+query <- paste(a1, att, a2, qtldatabase, a3, chromchr[i,1],
 a4, chromchr[i,2], a5, chromchr[i,3],a6);
 query <- gsub(pattern = "' ", replacement = "'", query);
 query <- gsub(pattern = " '", replacement = "'", query);
@@ -117,11 +129,11 @@ NROW <- NROW(single_QTL);
 if(NROW >= 1){
 for(j in 1:NROW){
 if(is.list(snp_values)){
-Nlist <- data.frame(snp_values[r,1:sflength], 
+Nlist <- data.frame(snp_values[r,1:sflength],
 single_QTL[j,1:length(qtl_attributes)]);
 }
 if(!is.list(snp_values)){
-Nlist <- data.frame(snp_values[r], 
+Nlist <- data.frame(snp_values[r],
 single_QTL[j,1:length(qtl_attributes)]);
 }
 if(names(Nlist)[1:sflength] != snp_filters){

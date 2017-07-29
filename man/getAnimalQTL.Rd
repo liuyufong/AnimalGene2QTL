@@ -5,7 +5,7 @@
 \title{Retrieve QTL data by gene.}
 \usage{
 getAnimalQTL(qtl_attributes, gene_filters, gene_values, data_set, snp = "",
-  snp_attributes = "")
+snp_attributes = "")
 }
 \arguments{
 \item{qtl_attributes, }{Attributes you want to retrieve. A possible
@@ -24,7 +24,7 @@ position of the filters in the filters argument.}
 '2' = 'ggalluse_gene_ensembl','3' = 'ecaballus_gene_ensembl',
 '4' = 'sscrofa_gene_ensembl','5' = 'oaries_gene_ensembl'.}
 
-\item{snp, }{Default 'FALSE'.Detemine whether retrieve SNP data 
+\item{snp, }{Default 'FALSE'.Detemine whether retrieve SNP data
 by TRUE or FALSE.}
 
 \item{snp_attributes, }{SNP attributes you want to retrieve.A possible

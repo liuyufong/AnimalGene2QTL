@@ -12,7 +12,7 @@
 #' @param data_set, choose one of "1,2,3,4,5".'1' = 'btaurus_gene_ensembl',
 #' '2' = 'ggalluse_gene_ensembl','3' = 'ecaballus_gene_ensembl',
 #' '4' = 'sscrofa_gene_ensembl','5' = 'oaries_gene_ensembl'.
-#' @param snp, Default 'FALSE'.Detemine whether retrieve SNP data 
+#' @param snp, Default 'FALSE'.Detemine whether retrieve SNP data
 #' by TRUE or FALSE.
 #' @param snp_attributes, SNP attributes you want to retrieve.A possible
 #' list of attributes can be retrieved using the function listSNPAttributes().
@@ -22,6 +22,8 @@
 #' @importFrom RSQLite dbGetQuery
 #' @importFrom RSQLite dbDisconnect
 #' @importFrom RSQLite SQLite
+#' @importFrom biomaRt listMarts
+#' @importFrom biomaRt useEnsembl
 #' @importFrom biomaRt useMart
 #' @importFrom biomaRt getBM
 #' @import knitr
@@ -31,7 +33,7 @@
 #' gene_values <- c('ENSBTAG00000009851');
 #' getAnimalQTL(qtl_attributes=c('QTL_ID'),gene_filters,
 #' gene_values,data_set=1,snp=TRUE,"refsnp_id");
-getAnimalQTL <- function(qtl_attributes, gene_filters,gene_values, 
+getAnimalQTL <- function(qtl_attributes, gene_filters,gene_values,
 data_set, snp="", snp_attributes=""){
 if(missing(qtl_attributes)){
 stop("Argument 'qtl_attributes' must be specified.")
@@ -46,12 +48,12 @@ stop("Argument 'snp_attributes' must be specified when snp is TRUE.")
 if(is.list(snp_attributes))
 snp_attributes <- t(snp_attributes);
 if(NROW(gene_values)>11)
-stop("gene value must be less than 10 rows if 
+stop("gene value must be less than 10 rows if
 you retrieve SNP because the SNP data is huge.")
 }
 if(snp == FALSE){
 if(!missing(snp_attributes))
-stop("Argument 'snp_attributes' must 
+stop("Argument 'snp_attributes' must
 not be specified when snp is FALSE.")
 }
 if(data_set < 1 || data_set > 5){
@@ -86,7 +88,7 @@ Please install it.",sep = ""),
 call. = FALSE)
 }
 }
-con <- dbConnect(SQLite(), 
+con <- dbConnect(SQLite(),
 system.file("extdata",
 "animalqtldb.db",
 package = "AnimalQTLDB"));
@@ -137,14 +139,24 @@ att <- paste(att, ",");
 att <- paste(att, qtl_attributes[n]);
 }
 }
-ensembl <- useMart("ensembl", dataset = genedataset);
+if(data_set == 2){
+ensembl<-useEnsembl("ensembl",version = 85);
+message("The version of chicken QTL is 4.0,and the
+version of gene is 4.0!")
+host<-"grch37.ensembl.org";
+}else{
+ensembl<-useEnsembl("ensembl");
+host<-"www.ensembl.org";
+}
+martlist<-listMarts(ensembl);
+mart <- useMart(martlist[1,1], dataset = genedataset);
 chromchr <- getBM(attributes=c(gene_filters,
 'chromosome_name',
 'start_position',
 'end_position'),
 filters=gene_filters,
 values=gene_values,
-mart=ensembl);
+mart=mart);
 chromrow <- NROW(chromchr);
 result <- data.frame();
 if(chromrow<1){
@@ -173,8 +185,7 @@ snp_attributes,"snp score(%)")
 }
 if(chromrow>=1){
 if(snp == TRUE){
-snp_mart <- useMart("ENSEMBL_MART_SNP", 
-dataset = snpdataset);
+snp_mart <- useMart(martlist[2,1], dataset = snpdataset, host=host);
 single_SNP <- getBM(attributes=c(snp_attributes,'chr_name','chrom_start',
 'chrom_end'),filters=c('chr_name','start','end'),
 values=list(chromchr[,gflength+1],chromchr[,gflength+2],
@@ -186,15 +197,15 @@ query1 <- paste(a1, att, a2, qtldatabase,
 a3, chromchr[i,gflength+1],
 a4, chromchr[i,gflength+2],
 a5, chromchr[i,gflength+3], a6,
-a7, chromchr[i,gflength+2], a8, 
+a7, chromchr[i,gflength+2], a8,
 chromchr[i,gflength+3], a9);
 query2 <- paste(b1, att, b2, qtldatabase, b3,
 chromchr[i,gflength+1],
-b4, chromchr[i,gflength+2], 
+b4, chromchr[i,gflength+2],
 b5, chromchr[i,gflength+3], b6,
-chromchr[i,gflength+2], b7, b8, 
+chromchr[i,gflength+2], b7, b8,
 chromchr[i,gflength+2], b9,
-chromchr[i,gflength+3], b10, 
+chromchr[i,gflength+3], b10,
 chromchr[i,gflength+3], b11);
 query1 <- gsub(pattern = "' ", replacement = "'", query1);
 query1 <- gsub(pattern = " '", replacement = "'", query1);
@@ -363,7 +374,7 @@ rm(sg_SNP);}
 gc();}
 if(Nrow < 1 && NSErow < 1){
 single_QTL1[1,3:NCOL(single_QTL1)] <- NA;
-single_QTL1[(NCOL(single_QTL1)+1):(NCOL(single_QTL1)+gflength)] <- 
+single_QTL1[(NCOL(single_QTL1)+1):(NCOL(single_QTL1)+gflength)] <-
 chromchr[i,1:gflength];
 single_QTL1[NCOL(single_QTL1)+1] <- NA;
 single_QTL1[1,1] <- chromchr[i,gflength+2];
@@ -415,4 +426,4 @@ result[is.na(result[NCOL(result)]), NCOL(result)] <- 0.333;
 result <- unique(result);
 return (result);
 gc();
-} 
+}
