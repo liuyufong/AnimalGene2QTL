@@ -105,7 +105,11 @@ ensembl<-useEnsembl("ensembl");
 host<-"www.ensembl.org";
 }
 martlist<-listMarts(ensembl);
+if(data_set == 2){
 mart <- useMart(martlist[2,1], dataset = snpdataset, host=host);
+}else{
+mart <- useMart(martlist[3,1], dataset = snpdataset, host=host);
+}
 for(i in 1:qtlflength){
 if(i == 1){
 a3 <- paste(qtl_filters[i], " in (");

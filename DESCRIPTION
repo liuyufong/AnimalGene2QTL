@@ -1,10 +1,10 @@
 Package: AnimalGene2QTL
-Version: 0.99.2
+Version: 0.99.3
 Title: Get the QTL/gene/SNP data functions
 Authors@R: person("Liu Yufeng", "Developer", role=c("aut", "cre"), email = "liuyufong@live.com")
 Author: Liu Yufeng Developer [aut, cre]
 Maintainer: Liu Yufeng Developer <liuyufong@live.com>
-Depends: R (>= 3.2.5)
+Depends: R (>= 3.4)
 Suggests: rmarkdown, RUnit, BiocGenerics
 Description: The AnimalGene2QTL provides an interface to retrieve QTL,gene and SNP.
 Imports: RSQLite, biomaRt, knitr, methods, AnimalQTLDB

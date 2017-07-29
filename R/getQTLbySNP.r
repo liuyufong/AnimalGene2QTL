@@ -106,7 +106,11 @@ ensembl<-useEnsembl("ensembl");
 host<-"www.ensembl.org";
 }
 martlist<-listMarts(ensembl);
+if(data_set == 2){
 mart <- useMart(martlist[2,1], dataset = snpdataset, host=host);
+}else{
+mart <- useMart(martlist[3,1], dataset = snpdataset, host=host);
+}
 for(r in 1:srow){
 if(is.list(snp_values)){
 chromchr <- getBM(attributes=c('chr_name','chrom_start',

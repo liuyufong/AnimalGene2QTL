@@ -185,7 +185,11 @@ snp_attributes,"snp score(%)")
 }
 if(chromrow>=1){
 if(snp == TRUE){
+if(data_set == 2){
 snp_mart <- useMart(martlist[2,1], dataset = snpdataset, host=host);
+}else{
+snp_mart <- useMart(martlist[3,1], dataset = snpdataset, host=host);
+}
 single_SNP <- getBM(attributes=c(snp_attributes,'chr_name','chrom_start',
 'chrom_end'),filters=c('chr_name','start','end'),
 values=list(chromchr[,gflength+1],chromchr[,gflength+2],
