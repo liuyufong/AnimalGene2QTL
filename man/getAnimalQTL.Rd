@@ -29,6 +29,5 @@ Retrieve QTL data by gene.
 \examples{
 gene_filters <- c('ensembl_gene_id');
 gene_values <- c('ENSBTAG00000009851');
-getAnimalQTL(qtl_attributes=c('QTL_ID'),gene_filters,
-gene_values,data_set=1,snp=TRUE,'refsnp_id');
+getAnimalQTL(qtl_attributes=c('QTL_ID'), gene_filters, gene_values, data_set=1, snp=TRUE, 'refsnp_id');
 }

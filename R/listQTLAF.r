@@ -4,6 +4,7 @@
 #' @export
 #' @importFrom RSQLite dbConnect
 #' @importFrom RSQLite dbDisconnect
+#' @importFrom RSQLite dbGetQuery
 #' @importFrom RSQLite SQLite
 #' @import knitr
 #' @examples 
