@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "Package: AnimalGene2QTL\nVersion: 1.0.0\nTitle: Get the QTL/gene/SNP data functions\nAuthors@R: person(\"LiuYufeng\", \"Developer\", role=c(\"aut\", \"cre\"), email = \"liuyufong@live.com\")\nAuthor: LiuYufeng Developer [aut, cre]\nMaintainer: LiuYufeng Developer <liuyufong@live.com>\nDepends: R (>= 3.2.0)\nSuggests: rmarkdown, RUnit, BiocGenerics\nDescription: The AnimalGene2QTL provides an interface to retrieve QTL,gene and SNP.\nImports: RSQLite, biomaRt, knitr, AnimalQTLDB\nLicense: Artistic-2.0\nEncoding: UTF-8\nLazyLoad: yes\nLazydata: true\nVignetteBuilder: knitr\nNeedsCompilation: no\nRoxygenNote: 6.0.1\nbiocViews:Software\n",
+    "contents" : "Package: AnimalGene2QTL\nVersion: 0.99.4\nTitle: Get the QTL/gene/SNP data functions\nAuthors@R: person(\"Liu Yufeng\", \"Developer\", role=c(\"aut\", \"cre\"), email = \"liuyufong@live.com\")\nAuthor: Liu Yufeng Developer [aut, cre]\nMaintainer: Liu Yufeng Developer <liuyufong@live.com>\nDepends: R (>= 3.4)\nSuggests: rmarkdown, RUnit, BiocGenerics\nDescription: The AnimalGene2QTL provides an interface to retrieve QTL,gene and SNP.\nImports: RSQLite, biomaRt, knitr, methods, AnimalQTLDB\nLicense: Artistic-2.0\nEncoding: UTF-8\nLazyLoad: yes\nLazydata: true\nVignetteBuilder: knitr\nNeedsCompilation: no\nRoxygenNote: 6.0.1\nbiocViews:Software, SNP, Genetics\n",
     "created" : 1500543439955.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2139125593",
+    "hash" : "1535781789",
     "id" : "8814AAC4",
-    "lastKnownWriteTime" : 1500624136,
-    "last_content_update" : 1500624136,
+    "lastKnownWriteTime" : 1502964694,
+    "last_content_update" : 1502964694226,
     "path" : "D:/D/R_program/bioconductor/AnimalGene2QTL/DESCRIPTION",
     "project_path" : "DESCRIPTION",
     "properties" : {

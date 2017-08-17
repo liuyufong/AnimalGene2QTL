@@ -7,24 +7,13 @@
 getSNPbyQTL(snp_attributes, qtl_filters, qtl_values, data_set)
 }
 \arguments{
-\item{snp_attributes, }{Attributes you want to retrieve.
-A possible list of snp_attributes can be retrieved using the function
-listAttributes {biomaRt}.}
+\item{snp_attributes, }{Attributes you want to retrieve. A possible list of snp_attributes can be retrieved using the function listAttributes {biomaRt}.}
 
-\item{qtl_filters, }{qtl_filters (one or more) that should be used in
-the query. A possible
-list of filters can be retrieved using the function listFilters.}
+\item{qtl_filters, }{qtl_filters (one or more) that should be used in the query. A possible list of filters can be retrieved using the function listFilters.}
 
-\item{qtl_values, }{Values of the qtl_filters, e.g. vector of IDs.
-If multiple qtl_filters are specified then the argument should be a list
-of vectors of which the position of each
-vector corresponds to the position of the qtl_filters in the qtl_filters
-argument.}
+\item{qtl_values, }{Values of the qtl_filters, e.g. vector of IDs. If multiple qtl_filters are specified then the argument should be a list of vectors of which the position of each vector corresponds to the position of the qtl_filters in the qtl_filters argument.}
 
-\item{data_set, }{choose one of "1,2,3,4,5".'1' = 'btaurus_gene_ensembl',
-'2' = 'ggalluse_gene_ensembl',
-'3' = 'ecaballus_gene_ensembl','4' = 'sscrofa_gene_ensembl',
-'5' = 'oaries_gene_ensembl'.}
+\item{data_set, }{choose one of '1,2,3,4,5'.'1' = 'btaurus_gene_ensembl', '2' = 'ggalluse_gene_ensembl', '3' = 'ecaballus_gene_ensembl','4' = 'sscrofa_gene_ensembl', '5' = 'oaries_gene_ensembl'.}
 }
 \value{
 result
@@ -36,6 +25,5 @@ Retrieve gene data by QTL data.
 snp_attributes <- c('refsnp_id');
 qtl_filters <- c('QTL_ID');
 qtl_values <- c('64577', '2199', '2354');
-getSNPbyQTL(snp_attributes,
-qtl_filters, qtl_values, data_set = 2);
+getSNPbyQTL(snp_attributes, qtl_filters, qtl_values, data_set = 2);
 }

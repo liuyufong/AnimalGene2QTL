@@ -5,30 +5,20 @@
 \title{Retrieve QTL data by gene.}
 \usage{
 getAnimalQTL(qtl_attributes, gene_filters, gene_values, data_set, snp = "",
-snp_attributes = "")
+  snp_attributes = "")
 }
 \arguments{
-\item{qtl_attributes, }{Attributes you want to retrieve. A possible
-list of attributes can be retrieved using the function listQTLAF().}
+\item{qtl_attributes, }{Attributes you want to retrieve. A possible list of attributes can be retrieved using the function listQTLAF().}
 
-\item{gene_filters, }{Filters (one or more) that should be used in
-the query. A possible list of filters can be retrieved using the
-function listGeneAF().}
+\item{gene_filters, }{Filters (one or more) that should be used in the query. A possible list of filters can be retrieved using the function listGeneAF().}
 
-\item{gene_values, }{Values of the filter, e.g. vector of IDs. If
-multiple filters are specified then the argument should be a list
-of vectors of which the position of each vector corresponds to the
-position of the filters in the filters argument.}
+\item{gene_values, }{Values of the filter, e.g. vector of IDs. If multiple filters are specified then the argument should be a list of vectors of which the position of each vector corresponds to the position of the filters in the filters argument.}
 
-\item{data_set, }{choose one of "1,2,3,4,5".'1' = 'btaurus_gene_ensembl',
-'2' = 'ggalluse_gene_ensembl','3' = 'ecaballus_gene_ensembl',
-'4' = 'sscrofa_gene_ensembl','5' = 'oaries_gene_ensembl'.}
+\item{data_set, }{choose one of '1,2,3,4,5'.'1' = 'btaurus_gene_ensembl', '2' = 'ggalluse_gene_ensembl','3' = 'ecaballus_gene_ensembl', '4' = 'sscrofa_gene_ensembl','5' = 'oaries_gene_ensembl'.}
 
-\item{snp, }{Default 'FALSE'.Detemine whether retrieve SNP data
-by TRUE or FALSE.}
+\item{snp, }{Default 'FALSE'.Detemine whether retrieve SNP data by TRUE or FALSE.}
 
-\item{snp_attributes, }{SNP attributes you want to retrieve.A possible
-list of attributes can be retrieved using the function listSNPAttributes().}
+\item{snp_attributes, }{SNP attributes you want to retrieve.A possible list of attributes can be retrieved using the function listSNPAttributes().}
 }
 \value{
 result
@@ -40,5 +30,5 @@ Retrieve QTL data by gene.
 gene_filters <- c('ensembl_gene_id');
 gene_values <- c('ENSBTAG00000009851');
 getAnimalQTL(qtl_attributes=c('QTL_ID'),gene_filters,
-gene_values,data_set=1,snp=TRUE,"refsnp_id");
+gene_values,data_set=1,snp=TRUE,'refsnp_id');
 }

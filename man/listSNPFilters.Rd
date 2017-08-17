@@ -7,9 +7,7 @@
 listSNPFilters(data_set)
 }
 \arguments{
-\item{data_set, }{choose one of "1,2,3,4,5".'1' = 'btaurus_snp',
-'2' = 'ggallus_snp','3' = 'ecaballus_snp',
-'4' = 'sscrofa_snp','5' = 'oaries_s}
+\item{data_set, }{choose one of '1,2,3,4,5'.'1' = 'btaurus_snp',2' = 'ggallus_snp','3' = 'ecaballus_snp',4' = 'sscrofa_snp','5' = 'oaries_s}
 }
 \value{
 result

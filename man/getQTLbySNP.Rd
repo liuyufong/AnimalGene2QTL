@@ -7,21 +7,13 @@
 getQTLbySNP(qtl_attributes, snp_filters, snp_values, data_set)
 }
 \arguments{
-\item{qtl_attributes, }{Attributes you want to retrieve. A possible
-list of attributes can be retrieved using the function listQTLAF().}
+\item{qtl_attributes, }{Attributes you want to retrieve. A possible list of attributes can be retrieved using the function listQTLAF().}
 
-\item{snp_filters, }{Filters (one or more) that should be used in
-the query. A possible list of filters can be retrieved using the
-function listSNPFilters().}
+\item{snp_filters, }{Filters (one or more) that should be used in the query. A possible list of filters can be retrieved using the function listSNPFilters().}
 
-\item{snp_values, }{Values of the filter, e.g. vector of IDs. If
-multiple filters are specified then the argument should be a list
-of vectors of which the position of each vector corresponds to the
-position of the filters in the filters argument.}
+\item{snp_values, }{Values of the filter, e.g. vector of IDs. If multiple filters are specified then the argument should be a list of vectors of which the position of each vector corresponds to the position of the filters in the filters argument.}
 
-\item{data_set, }{choose one of "1,2,3,4,5".'1' = 'btaurus_snp',
-'2' = 'ggallus_snp','3' = 'ecaballus_snp',
-'4' = 'sscrofa_snp','5' = 'oaries_snp'.}
+\item{data_set, }{choose one of '1,2,3,4,5'.'1' = 'btaurus_snp', '2' = 'ggallus_snp','3' = 'ecaballus_snp', '4' = 'sscrofa_snp','5' = 'oaries_snp'.}
 }
 \value{
 result
@@ -32,6 +24,5 @@ Retrieve QTL data by SNP.
 \examples{
 snp_filters <- c('snp_filter');
 snp_values <- c('rs3136845');
-getQTLbySNP(qtl_attributes=c('QTL_ID'),snp_filters,
-snp_values,data_set=2);
+getQTLbySNP(qtl_attributes=c('QTL_ID'), snp_filters, snp_values, data_set=2);
 }
